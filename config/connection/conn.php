@@ -37,4 +37,13 @@
 // Liste retard jours
     $l_ret_jours = "SELECT UserId,  Code, H_E, P_E, H_ret, Dates FROM t_retard_jours WHERE (Dates=Date(now())) AND (Code!='STC') ORDER BY UserId";
     $r_l_ret_jours = mysqli_query($connection, $l_ret_jours);
+
+// Pourcentage retard hebdomadaire
+    $p_ret_hebdo = "SELECT DISTINCT DeptId AS DeptId, Code, Effectif, Nb_ret, ROUND(P_ret, 2) AS P_ret, Dates 
+                    FROM t_pourcentage_retard WHERE (Dates BETWEEN date_add(curdate(), interval -7 day) AND date_add(curdate(), interval -1 day)) AND (Code!='STC')";
+    $r_p_ret_hebdo = mysqli_query($connection, $p_ret_hebdo);
+// Pourcentage retard mensuel
+    $p_ret_mens = "SELECT DISTINCT DeptId AS DeptId, Code, Effectif, Nb_ret, ROUND(P_ret, 2) AS P_ret, Dates 
+                    FROM t_pourcentage_retard WHERE (MONTH(Dates)=MONTH(date_add(curdate(), interval -1 month))) AND (Code!='STC')";
+    $r_p_ret_mens = mysqli_query($connection, $p_ret_mens);
 ?>

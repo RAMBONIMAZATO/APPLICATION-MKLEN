@@ -71,9 +71,12 @@
                                                         </div>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="ret-res-hebdo.php">Hebdomadaire</a>
+                                                        <a class="nav-link" href="ret_hebdo.php">Hebdomadaire</a>
                                                     </li>
                                                     <li class="nav-item">
+                                                        <a class="nav-link" href="ret_mens.php">Mensuel</a>
+                                                    </li>
+                                                    <!-- <li class="nav-item">
                                                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-9" aria-controls="submenu-1-9">Mensuel</a>
                                                         <div id="submenu-1-9" class="collapse submenu" style="">
                                                             <ul class="nav flex-column">
@@ -85,7 +88,7 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                    </li>
+                                                    </li> -->
                                                 </ul>
                                             </div>
                                         <!-- ============================================================== -->

@@ -71,9 +71,12 @@
                                                         </div>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="retard/ret-res-hebdo.php">Hebdomadaire</a>
+                                                        <a class="nav-link" href="retard/ret_hebdo.php">Hebdomadaire</a>
                                                     </li>
                                                     <li class="nav-item">
+                                                        <a class="nav-link" href="retard/ret_mens.php">Mensuel</a>
+                                                    </li>
+                                                    <!-- <li class="nav-item">
                                                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-9" aria-controls="submenu-1-9">Mensuel</a>
                                                         <div id="submenu-1-9" class="collapse submenu" style="">
                                                             <ul class="nav flex-column">
@@ -85,7 +88,7 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                    </li>
+                                                    </li> -->
                                                 </ul>
                                             </div>
                                         <!-- ============================================================== -->
@@ -100,9 +103,9 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="data/insert_data.php">Data</a>
+                                            <a class="nav-link" href="data/insert_data.php">DONNEES MYSQL</a>
+                                            <a class="nav-link" href="backup/access/delete.php">DELETE_ACCESS</a>
                                             <a class="nav-link" href="backup/access/insert.php">INSERT_ACCESS</a>
-                                            <a class="nav-link" href="backup/access/delete.php">SUPPRESSION</a>
                                             <a class="nav-link" href="backup/mysql/del_dept.php">DELETE_MYSQL</a>
                                         </li>
                                     </ul>

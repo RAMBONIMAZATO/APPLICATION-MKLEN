@@ -31,11 +31,11 @@
             ";
             $r_del = mysqli_query($connection, $q_del);
             if($r_del){
-                echo '
+                /*echo '
                 <div class="alert alert-success" role="alert">
                   The data is delete!
-                </div>';
-                /*header("Location: insert_data.php");*/
+                </div>';*/
+                header("Location: ../../index.php");
             }else{
                 echo '
                 <div class="alert alert-danger" role="alert">

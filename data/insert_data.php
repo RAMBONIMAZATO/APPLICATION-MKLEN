@@ -69,9 +69,7 @@
                     <!-- INSERTION JOURS -->
                         <?php 
                         $connection = mysqli_connect("localhost", "root", "");
-                        $db = mysqli_select_db($connection, 'ebp');
-                        if (isset($_POST['insert_btn_1'])) {
-                                $insert_l_ret="
+                        /*
                                 INSERT INTO t_retard_jours(UserId, Name, DeptId, Code, Effectif, Dates, H_E)
                                 SELECT DISTINCT UserId, Name, DeptId, Code, Effectif, Dates, H_E FROM `t_pres_h_jours`  
                                 WHERE ((Dates=Date(now())) AND (Code!='ADM') AND (Code!='GNR') AND (H_E between '07:10:00' and '10:00:00'))
@@ -80,7 +78,61 @@
                                 WHERE ((Dates=Date(now())) AND (Code='ADM') AND (H_E between '08:10:00' and '10:00:00'))
                                 UNION
                                 SELECT DISTINCT UserId, Name, DeptId, Code, Effectif, Dates, H_E FROM `t_pres_h_jours` 
-                                WHERE ((Dates=Date(now())) AND (Code='GNR') AND (H_E between '06:10:00' and '10:00:00'))
+                                WHERE ((Dates=Date(now())) AND (Code='GNR') AND (H_E between '06:10:00' and '10:00:00'))*/
+                        $db = mysqli_select_db($connection, 'ebp');
+                        if (isset($_POST['insert_btn_1'])) {
+                                $insert_l_ret="
+                                INSERT INTO t_retard_jours(UserId, Name, DeptId, Code, Effectif, Dates, H_E)
+                                SELECT DISTINCT UserId, Name, DeptId, Code, Effectif, Dates, H_E
+                                FROM  `t_pres_h_jours` 
+                                WHERE (
+                                (
+                                Dates = DATE( NOW( ) )
+                                )
+                                AND (
+                                Code !=  'ADM'
+                                )
+                                AND (
+                                Code !=  'GNR'
+                                )
+                                AND (
+                                H_E
+                                BETWEEN  '07:10:00'
+                                AND  '10:00:00'
+                                )
+                                )
+                                UNION DISTINCT
+                                SELECT DISTINCT UserId, Name, DeptId, Code, Effectif, Dates, H_E
+                                FROM  `t_pres_h_jours` 
+                                WHERE (
+                                (
+                                Dates = DATE( NOW( ) )
+                                )
+                                AND (
+                                Code =  'ADM'
+                                )
+                                AND (
+                                H_E
+                                BETWEEN  '08:10:00'
+                                AND  '10:00:00'
+                                )
+                                )
+                                UNION DISTINCT
+                                SELECT DISTINCT UserId, Name, DeptId, Code, Effectif, Dates, H_E
+                                FROM  `t_pres_h_jours` 
+                                WHERE (
+                                (
+                                Dates = DATE( NOW( ) )
+                                )
+                                AND (
+                                Code =  'GNR'
+                                )
+                                AND (
+                                H_E
+                                BETWEEN  '06:10:00'
+                                AND  '10:00:00'
+                                )
+                                )
                                 ";
                                 $r_insert_l_ret = mysqli_query($connection, $insert_l_ret);
                                 if($insert_l_ret){
@@ -104,7 +156,7 @@
                                            WHEN Code='ADM' THEN '08:00:00'
                                            ELSE '07:00:00'
                                         END),
-                                        H_ret=abs(TIMEDIFF(H_E, P_E))  WHERE Dates=Date(now());
+                                        H_ret=abs(TIMEDIFF(H_E, P_E))  WHERE Dates=Date(now())
                                         ";
                             $r_update = mysqli_query($connection, $q_update);
                             /*if($r_update){
@@ -155,6 +207,12 @@
                                             WHERE Dates = DATE( NOW( ) )
                                             )
                                             ";
+                                            /*
+                                            SELECT t_dept_user.UserId, t_dept_user.Name, t_dept_user.Fonction, t_dept_user.DeptId, t_dept_user.Code, t_dept_user.Effectif, t_present_jours.Dates
+                                            FROM t_present_jours
+                                            RIGHT JOIN t_dept_user ON t_present_jours.UserId = t_dept_user.UserId
+                                            WHERE t_present_jours.Dates IS NULL 
+                                            */
                                 $r_insert_l_abs = mysqli_query($connection, $insert_l_abs);
                                 if($r_insert_l_abs){
                                     echo '
